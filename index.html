@@ -11,6 +11,12 @@
   <div class="container">
     <h1>Blar Price Calculator</h1>
 
+    <label for="color">Type d'objet :</label>
+    <select id="designation">
+      <option value="FENETRE">FENETRE</option>
+      <option value="PORTE">PORTE</option>
+    </select>
+
     <label for="width">Largeur (m) :</label>
     <input type="number" id="width" step="0.01" placeholder="Entrez la largeur">
 
@@ -31,17 +37,123 @@
       <option value="faux bois">Faux bois</option>
     </select>
 
-    <label for="typeBlar">Type de blar (6 ou 8) :</label>
+    <label for="typeBlar">Type de blar :</label>
     <select id="typeBlar">
       <option value="6">6</option>
       <option value="8">8</option>
     </select>
-
-    <button onclick="calculerPrix()">Calculer le prix</button>
-    <label for="result">Prix Totlal :</label>
+    
+    <div class="box-btn">
+      <button onclick="calculerPrix()">Calculer le prix</button>
+      <button onclick="AddCommande()">Add to Facture</button>
+    </div>
+    
     <p id="result"></p>
+    <button id="sendEmail" style="display:none;" onclick="envoyerEmail()">Confirmer la commande</button>
+    <button id="printFacture" style="background-color: #4caf50;" onclick="allerVersFacture()">Imprimer la facture</button>
   </div>
 
-  <script src="main.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script type="text/javascript">
+(function(){
+emailjs.init({
+  publicKey: "7GMNHhMqYCkeu57YC",
+});
+})();
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+  <script>
+    emailjs.init('bKnKVEjDByk02xfIJ'); // Remplacez par votre ID EmailJS
+
+    let prixTotal = 0; // Global variable to store total price
+
+    // Function to calculate price
+    function calculerPrix() {
+      let largeur = parseFloat(document.getElementById("width").value);
+      let hauteur = parseFloat(document.getElementById("height").value);
+      let type = document.getElementById("type").value.toLowerCase();
+      let couleur = document.getElementById("color").value.toLowerCase();
+      let typeBlar = parseInt(document.getElementById("typeBlar").value);
+      let designation = document.getElementById("designation").value.toLowerCase();
+
+      if (isNaN(largeur) || isNaN(hauteur) || largeur <= 0 || hauteur <= 0) {
+        document.getElementById("result").textContent = "Veuillez entrer des dimensions valides.";
+        return;
+      }
+
+      let prixParM2 = 600;
+      let surface = largeur * hauteur;
+      let prixSurf = surface * prixParM2;
+      let prixCouleur = { noir: 20, blanc: 25, gris: 30, "faux bois": 40 }[couleur] || 0;
+      let prixType = type === "carré" ? 30 : 40;
+      let prixTypeBlar = typeBlar === 6 ? 10 : 20;
+
+      prixTotal = prixSurf + prixCouleur + prixType + prixTypeBlar;
+      document.getElementById("result").textContent = `Le prix total est : ${prixTotal.toFixed(3)} TND.`;
+    }
+
+    // Function to add the order to localStorage and redirect to invoice page
+    function AddCommande() {
+      let largeur = parseFloat(document.getElementById("width").value);
+      let hauteur = parseFloat(document.getElementById("height").value);
+      let type = document.getElementById("type").value.toLowerCase();
+      let couleur = document.getElementById("color").value.toLowerCase();
+      let typeBlar = parseInt(document.getElementById("typeBlar").value);
+      let designation = document.getElementById("designation").value.toLowerCase();
+
+      if (isNaN(largeur) || isNaN(hauteur) || largeur <= 0 || hauteur <= 0) {
+        document.getElementById("result").textContent = "Veuillez entrer des dimensions valides.";
+        return;
+      }
+      
+
+      let commande = {
+        designation,
+        largeur,
+        hauteur,
+        type,
+        couleur,
+        typeBlar,
+        prixTotal: prixTotal.toFixed(3)
+      };
+
+      // Store the order in localStorage
+      let commandes = JSON.parse(localStorage.getItem("commandes")) || [];
+      commandes.push(commande);
+      localStorage.setItem("commandes", JSON.stringify(commandes));
+
+      document.getElementById("sendEmail").style.display = "block"; // Show the email button after adding to order
+    }
+
+    // Function to redirect to invoice page
+    function allerVersFacture() {
+      window.location.href = "facture.html"; // Redirect to invoice page
+    }
+
+    // Function to send the email using EmailJS
+    function envoyerEmail() {
+      let params = {
+        designation: document.getElementById("designation").value,
+        largeur: document.getElementById("width").value,
+        hauteur: document.getElementById("height").value,
+        type: document.getElementById("type").value,
+        couleur: document.getElementById("color").value,
+        typeBlar: document.getElementById("typeBlar").value,
+        prix: document.getElementById("result").textContent
+      };
+
+      emailjs.send("service_hut6elm","template_1ej2c34", params)
+        .then(function(response) {
+          alert('Commande confirmée et email envoyé !');
+        }, function(error) {
+          console.error('Erreur lors de l\'envoi de l\'email:', error);
+          alert('Erreur lors de l\'envoi de l\'email : ' + error.text);
+        });
+    }
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture</title>
+    <link rel="stylesheet" href="style-facture.css">
+</head>
+<body>
+<div class="container">
+<h1>Facture des Commandes</h1>
+<table id="commandes-table">
+    <thead>
+    <tr class="header">
+        <th>Designation</th>
+        <th>Largeur (m)</th>
+        <th>Hauteur (m)</th>
+        <th>Type</th>
+        <th>Couleur</th>
+        <th>Type de Blar</th>
+        <th>Prix Total (TND)</th>
+    </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+</table>
+
+<button class="print-button" onclick="window.print();">Imprimer la Facture</button>
+<button class="print-button" onclick="reset()">rest le Facture !</button>
+
+</div>
+
+<script>
+    // Charger les commandes depuis le localStorage
+    let commandes = JSON.parse(localStorage.getItem("commandes")) || [];
+    let tableBody = document.getElementById("table-body");
+
+    commandes.forEach(cmd => {
+    let row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${cmd.designation}</td>
+        <td>${cmd.largeur}</td>
+        <td>${cmd.hauteur}</td>
+        <td>${cmd.type}</td>
+        <td>${cmd.couleur}</td>
+        <td>${cmd.typeBlar}</td>
+        <td>${cmd.prixTotal}</td>
+    `;
+    tableBody.appendChild(row);
+    });
+    function reset() {
+        commandes = [];
+        localStorage.removeItem("commandes"); // Clear stored commands after printing
+        tableBody.innerHTML = ''; // Clear the table body
+    }
+
+</script>
+
+</body>
+</html>

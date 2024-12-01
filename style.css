@@ -6,7 +6,7 @@ body {
   }
   
   .container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -55,5 +55,19 @@ body {
     color: #333;
     text-align: center;
 
+  }
+  
+  #commandes-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header{
+    display: flex;
+    gap: 27px;
+  }
+  .box-btn{
+    display: flex;
+    gap: 27px;
   }
   
