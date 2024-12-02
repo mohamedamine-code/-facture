@@ -8,10 +8,12 @@
 </head>
 <body>
 <div class="container">
+    <button  id="back" class="print-button" onclick="reset()">back</button>
 <h1>Facture des Commandes</h1>
 <table id="commandes-table">
     <thead>
     <tr class="header">
+        <th>N°</th>
         <th>Designation</th>
         <th>Largeur (m)</th>
         <th>Hauteur (m)</th>
@@ -25,7 +27,7 @@
 </table>
 
 <button class="print-button" onclick="window.print();">Imprimer la Facture</button>
-<button class="print-button" onclick="reset()">rest le Facture !</button>
+
 
 </div>
 
@@ -37,6 +39,7 @@
     commandes.forEach(cmd => {
     let row = document.createElement("tr");
     row.innerHTML = `
+        <td>${cmd.number}</td>
         <td>${cmd.designation}</td>
         <td>${cmd.largeur}</td>
         <td>${cmd.hauteur}</td>
@@ -51,6 +54,7 @@
         commandes = [];
         localStorage.removeItem("commandes"); // Clear stored commands after printing
         tableBody.innerHTML = ''; // Clear the table body
+        window.location.href = "index.html";
     }
 
 </script>
