@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de contact</title>
-    <link rel="stylesheet" href="Style-formulaire.css">
+    <link rel="stylesheet" href="style-formulaire.css">
 </head>
 <body>
     <div class="container">
         <button type="button" onclick="back()">Retour</button>
         <h1>Contactez-nous</h1>
 
-        <form method="post">
+        <form method="post" id="commandeForm">
             <label for="prenom">Prénom :</label>
             <input type="text" id="prenom" name="prenom" required>
-
+        
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required>
-
+        
             <div class="box-identifiant">
                 <label for="identifiant">Identifiant :</label>
                 <input type="text" id="identifiant" name="identifiant" required>
                 <button type="button" onclick="generateRandomID()">Générer un identifiant</button>
             </div>
-
+        
             <label for="telephone">Numéro de téléphone :</label>
-            <input type="tel" id="telephone" name="telephone"  placeholder="Ex: 12345678" required>
-
+            <input type="tel" id="telephone" name="telephone" placeholder="Ex: 12345678" required>
+        
             <label for="date">Date d'affectation :</label>
             <input type="date" id="date" name="date_affectation" required>
-
-            <button type="button" onclick="allerVersFacture()">Confirmer la facture</button>
+        
+            <button type="button" onclick="validerFormulaire()">Confirmer la facture</button>
         </form>
     </div>
 
@@ -50,11 +50,33 @@
 
         function allerVersFacture() {
             try {
-                window.location.href = "facture.html";
+                window.location.href = "/facteur de blar/facture.html";
             } catch (error) {
                 console.error("Navigation failed:", error);
             }
         }
+
+         // Valider le formulaire
+        function validerFormulaire() {
+        const form = document.getElementById('commandeForm');
+        const inputs = form.querySelectorAll('input[required]');
+
+        let allValid = true;
+
+        // Vérifier que chaque champ requis est rempli
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                alert(`Le champ "${input.previousElementSibling.textContent}" est requis.`);
+                allValid = false;
+                return;
+            }
+        });
+
+        if (allValid) {
+            allerVersFacture();
+    }
+}
+
     </script>
 </body>
 </html>
