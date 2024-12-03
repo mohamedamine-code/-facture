@@ -4,35 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de contact</title>
-    <link rel="stylesheet" href="Style-formulaire.css">
+    <link rel="stylesheet" href="style-formulaire.css">
 </head>
 <body>
     <div class="container">
-        <button onclick="back()">Retour</button>
+        <button type="button" onclick="back()">Retour</button>
         <h1>Contactez-nous</h1>
-        <form action="submit_form.php" method="post">
+
+        <form method="post">
             <label for="prenom">Prénom :</label>
             <input type="text" id="prenom" name="prenom" required>
 
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" required>
 
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
+            <div class="box-identifiant">
+                <label for="identifiant">Identifiant :</label>
+                <input type="text" id="identifiant" name="identifiant" required>
+                <button type="button" onclick="generateRandomID()">Générer un identifiant</button>
+            </div>
 
             <label for="telephone">Numéro de téléphone :</label>
-            <input type="tel" id="telephone" name="telephone" required>
+            <input type="tel" id="telephone" name="telephone"  placeholder="Ex: 12345678" required>
 
             <label for="date">Date d'affectation :</label>
             <input type="date" id="date" name="date_affectation" required>
 
-            <button type="submit">Envoyer</button>
+            <button type="button" onclick="allerVersFacture()">Confirmer la facture</button>
         </form>
     </div>
+
+    <script>
+        function back() {
+            window.location.href = "index.html";
+        }
+
+        function generateRandomID() {
+            const characters = '0123456789';
+            let id = 'C_2025_';
+            for (let i = 0; i < 5; i++) {
+                id += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('identifiant').value = id;
+        }
+
+        function allerVersFacture() {
+            try {
+                window.location.href = "/facteur de blar/facture.html";
+            } catch (error) {
+                console.error("Navigation failed:", error);
+            }
+        }
+    </script>
 </body>
 </html>
-<script>
-    function back() {
-        window.location.href = "index.html";
-    }
-</script>

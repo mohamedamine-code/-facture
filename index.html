@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">CrystalCraft</div>
+      <ul class="nav-links">
+        <li><a href="#create">Créer Cristal</a></li>
+        <li><a href="#features">Fonctionnalités</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
   <div class="container">
+    <a href="/index-Main.html" id="back">RETOUR</a>
     <h1>Blar Price Calculator</h1>
 
     <label for="color">Type d'objet :</label>
@@ -43,7 +53,7 @@
       <option value="8">8</option>
     </select>
 
-    <label for="width">n° de fois :</label>
+    <label for="width">nbre:</label>
     <input type="number" id="number" step="0.01" placeholder="Entrez le nombre de fois ">
 
 
@@ -54,7 +64,7 @@
     
     <p id="result"></p>
     <button id="sendEmail" style="display:none;" onclick="gotoFormulaire()">Confirmer la commande</button>
-    <button id="printFacture" style="background-color: #4caf50;" onclick="allerVersFacture()">Imprimer la facture</button>
+    
   </div>
 
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
@@ -152,9 +162,7 @@ emailjs.init({
 
 
     // Function to redirect to invoice page
-    function allerVersFacture() {
-      window.location.href = "facture.html"; // Redirect to invoice page
-    }
+    
 
     // Function to redirect to formulaire page
     function gotoFormulaire() {

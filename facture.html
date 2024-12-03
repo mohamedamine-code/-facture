@@ -8,12 +8,12 @@
 </head>
 <body>
 <div class="container">
-    <button  id="back" class="print-button" onclick="reset()">back</button>
+    <a class="back" href="/facteur de blar/formulair.html">Retour</a>
 <h1>Facture des Commandes</h1>
 <table id="commandes-table">
     <thead>
     <tr class="header">
-        <th>N°</th>
+        <th>Nbre</th>
         <th>Designation</th>
         <th>Largeur (m)</th>
         <th>Hauteur (m)</th>
@@ -25,10 +25,10 @@
     </thead>
     <tbody id="table-body"></tbody>
 </table>
-
+<div class="box-imp">
 <button class="print-button" onclick="window.print();">Imprimer la Facture</button>
-
-
+<button  id="back" class="print-button" onclick="reset()">nouvelle facture</button>
+</div>
 </div>
 
 <script>
