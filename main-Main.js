@@ -23,5 +23,5 @@ function generateCrystal() {
     }
   }
 function goCreateSection() {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
 }  
