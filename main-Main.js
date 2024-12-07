@@ -23,5 +23,5 @@ function generateCrystal() {
     }
   }
 function goCreateSection() {
-    window.location.href = "/facteur de blar/index.html";
+    window.location.href = "index.html";
 }  
