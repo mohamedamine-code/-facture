@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background:  #203a43;
     color: white;
     margin: 0;
     padding: 0;
@@ -59,4 +59,25 @@ button:hover {
 }
 .box-identifiant button{
     margin-bottom: 20px;
+}
+
+@media  screen and (max-width: 490px) {
+    body{
+      margin: 1px auto;
+      width: 150%;
+    }
+    }
+
+    @media screen and (max-width: 324px) {
+      body{
+        width: 200%;
+      }
+    }
+
+
+@media screen and (max-width: 270px) {
+  body{
+    width: 200%;
+  }
+  
 }

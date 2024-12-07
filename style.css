@@ -2,8 +2,9 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   color: white;
+  background-color: #203a43;
+  
   }
   
   .container {
@@ -118,3 +119,23 @@ body {
     color: white;
     font-weight: 300;
   }
+  @media  screen and (max-width: 490px) {
+    body{
+      margin: 1px auto;
+      width: 150%;
+    }
+    }
+
+    @media screen and (max-width: 324px) {
+      body{
+        width: 200%;
+      }
+    }
+
+
+@media screen and (max-width: 270px) {
+  body{
+    width: 200%;
+  }
+  
+}

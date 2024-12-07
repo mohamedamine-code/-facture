@@ -2,12 +2,12 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #f4f9f9, #dff9fb);
+    background:  #dff9fb;
     color: #333;
   }
   
   .header {
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background:  #203a43;
     color: white;
     padding: 20px;
     text-align: center;
@@ -51,7 +51,7 @@ body {
     height: calc(100vh - 140px);
   }
   .hero h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 20px 0;
   }
   
@@ -66,4 +66,55 @@ body {
   
   .cta-button:hover {
     background: #e66a00;
+  }
+  @media screen and (max-width: 490px) {
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+  
+    .cta-button {
+      font-size: 0.9rem;
+    }
+  
+    .navbar {
+      flex-direction: column;
+    }
+  
+    .nav-links {
+      padding: 0;
+    }
+
+  }
+  
+  @media screen and (max-width: 324px) {
+    body {
+      padding: 10px;
+    }
+  
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+  
+    .cta-button {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  
+    .logo {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (max-width: 270px) {
+    body {
+      font-size: 0.7rem;
+    }
+  
+    .hero h1 {
+      font-size: 1.2rem;
+    }
+  
+    .cta-button {
+      font-size: 0.7rem;
+    }
   }
